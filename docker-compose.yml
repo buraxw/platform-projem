@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # 1. Web Arayüzü ve Nginx (Proxy)
+  web-arayuz:
+    build: .
+    container_name: burak-cloud-web
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/lib/letsencrypt
+    depends_on:
+      - backend
+
+  # 2. Python Flask Backend
+  backend:
+    build: ./backend
+    container_name: burak-cloud-backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: 516191011be
+      DB_NAME: burak
+
+  # 3. MySQL Veritabanı
+  db:
+    image: mysql:8.0
+    container_name: burak-cloud-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: burak
+      MYSQL_ROOT_PASSWORD: 516191011be
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # 4. SSL Sertifika Yönetimi
+  certbot:
+    image: certbot/certbot
+    container_name: burak-cloud-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/lib/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  # 5. Sunucu İzleme (Netdata)
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    hostname: burak-cloud-netdata
+    restart: always
+    ports:
+      - "19999:19999"
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - netdataconfig:/etc/netdata
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+# TÜM VOLUME TANIMLAMALARI BURADA (TEK BAŞLIK ALTINDA)
+volumes:
+  mysql_data:
+  netdataconfig:
+  netdatalib:
+  netdatacache:

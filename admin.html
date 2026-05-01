@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Burak Ergün | Admin Mesaj Paneli</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 40px; }
+        .admin-container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h2 { color: #007bff; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #007bff; color: white; }
+        tr:hover { background-color: #f1f1f1; }
+        .refresh-btn { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; float: right; }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+    <button class="refresh-btn" onclick="mesajlariGetir()"><i class="fas fa-sync"></i> Yenile</button>
+    <h2><i class="fas fa-user-shield"></i> Gelen Mesajlar</h2>
+    
+    <table id="messagesTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>İsim</th>
+                <th>E-posta</th>
+                <th>Mesaj</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody id="messagesBody">
+            <!-- Mesajlar buraya gelecek -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    async function mesajlariGetir() {
+        try {
+            const response = await fetch('/api/get-messages');
+            const messages = await response.json();
+            
+            const tableBody = document.getElementById('messagesBody');
+            tableBody.innerHTML = ''; // Tabloyu temizle
+
+            messages.forEach(msg => {
+                const row = `<tr>
+                    <td>${msg.id}</td>
+                    <td>${msg.name}</td>
+                    <td>${msg.email}</td>
+                    <td>${msg.message}</td>
+                    <td>${new Date(msg.created_at).toLocaleString('tr-TR')}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        } catch (error) {
+            console.error("Mesajlar çekilemedi:", error);
+            alert("Veriler çekilirken bir hata oluştu.");
+        }
+    }
+
+    // Sayfa açıldığında verileri otomatik getir
+    mesajlariGetir();
+</script>
+
+</body>
+</html>

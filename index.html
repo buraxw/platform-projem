@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burak Ergün | Cloud & Platform Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #007bff; --dark: #1a1a1a; --light: #f4f7f6; --success: #28a745; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--light); color: #333; line-height: 1.6; }
+        header { background: var(--dark); color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--primary); }
+        .profile-pic { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary); margin-bottom: 15px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .container { max-width: 900px; margin: -40px auto 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        h2 { color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; display: flex; align-items: center; gap: 10px; }
+        
+        /* Proje Kartları */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { border: 1px solid #eee; border-radius: 10px; padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; background: #fff; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .card i { font-size: 2em; color: var(--primary); margin-bottom: 15px; }
+        .card h3 { margin: 10px 0; font-size: 1.2em; }
+        .card p { font-size: 0.9em; color: #666; }
+        .tech-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+        .tag { background: #e9ecef; font-size: 0.75em; padding: 3px 8px; border-radius: 4px; color: var(--dark); font-weight: 600; }
+
+        .social-box { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
+        .btn { text-decoration: none; color: white; padding: 12px 25px; border-radius: 8px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.3s; }
+        .btn:hover { opacity: 0.8; }
+        .btn-link { background: #0077b5; }
+        .btn-inst { background: #e1306c; }
+        .btn-monitor { background: var(--dark); border: 1px solid var(--primary); }
+
+        .status { background: #f8f9fa; border-left: 5px solid var(--success); padding: 15px; border-radius: 8px; color: #444; margin-top: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .live-pulse { width: 10px; height: 10px; background: var(--success); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
+
+        /* İletişim Formu */
+        .contact-box { max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .contact-box input, .contact-box textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+        .contact-box button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1em; }
+        .contact-box button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://img.freepik.com/premium-vector/man-professional-business-casual-young-avatar-icon-illustration_1277826-629.jpg?semt=ais_hybrid&w=740&q=80" alt="Burak Ergün" class="profile-pic">
+    <h1>Burak Ergün</h1>
+    <p>Cloud & Platform Engineer | Doğuş Teknoloji Intern</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2><i class="fas fa-layer-group"></i> Uzmanlık Alanları & Projeler</h2>
+        <div class="project-grid">
+            <div class="card">
+                <i class="fas fa-cloud"></i>
+                <h3>AWS Cloud Infrastructure</h3>
+                <p>AWS EC2 üzerinde mikroservis mimarisi kurulumu ve güvenli bulut servis yönetimi.</p>
+                <div class="tech-tags">
+                    <span class="tag">AWS</span> <span class="tag">EC2</span> <span class="tag">IAM</span>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fas fa-cubes"></i>
+                <h3>Docker Orchestration</h3>
+                <p>Nginx, MySQL ve SSL servislerinin Docker Compose ile konteynerizasyonu.</p>
+                <div class="tech-tags">
+                    <span class="tag">Docker</span> <span class="tag">Compose</span> <span class="tag">Nginx</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-chart-line"></i> Sistem İzleme</h2>
+        <p>Altyapı durumunu anlık olarak takip ettiğim monitoring panelime buradan ulaşabilirsiniz:</p>
+        <a href="http://burakergun.duckdns.org:19999" target="_blank" class="btn btn-monitor"><i class="fas fa-terminal"></i> Netdata Dashboard</a>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-university"></i> Eğitim</h2>
+        <p><strong>Haliç Üniversitesi</strong><br>Bilgisayar Mühendisliği (2. Sınıf) - Cloud Research Focus</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-envelope-open-text"></i> İletişim</h2>
+        <div class="social-box">
+            <a href="https://www.linkedin.com/in/burak-erg%C3%BCn-501b81350/" target="_blank" class="btn btn-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.instagram.com/buraxw/" target="_blank" class="btn btn-inst"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+    </section>
+
+    <!-- Not Bırakın Bölümü -->
+    <div class="contact-box">
+        <h3 style="color: #333; margin-top: 0;"><i class="fas fa-envelope"></i> Bana Bir Not Bırakın</h3>
+        <input type="text" id="name" placeholder="Adınız">
+        <input type="email" id="email" placeholder="E-posta Adresiniz">
+        <textarea id="msg" placeholder="Mesajınız..." style="height: 100px;"></textarea>
+        <button onclick="gonder()">Gönder</button>
+    </div>
+
+    <div class="status">
+        <span><span class="live-pulse"></span> Altyapı Durumu: <strong>AWS Frankfurt / Docker Stabil</strong></span>
+        <small>SSL Secured <i class="fas fa-lock" style="color:var(--success)"></i></small>
+    </div>
+</div>
+
+<script>
+function gonder() {
+    const payload = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('msg').value
+    };
+
+    // Boş alan kontrolü
+    if (!payload.name || !payload.email || !payload.message) {
+        alert("Lütfen tüm alanları doldurun.");
+        return;
+    }
+
+    // Nginx üzerindeki /api/ yönlendirmesini kullanıyoruz
+    fetch('/api/send-message', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
+    .then(res => {
+        if(res.ok) {
+            alert("Mesajın Frankfurt'taki MySQL veritabanına başarıyla kaydedildi!");
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('msg').value = '';
+        } else {
+            alert("Bir hata oluştu, backend'e ulaşılamıyor. Durum kodu: " + res.status);
+        }
+    })
+    .catch(err => {
+        console.error("Hata:", err);
+        alert("Bağlantı hatası! Lütfen internetinizi ve sunucu durumunu kontrol edin.");
+    });
+}
+</script>
+
+</body>
+</html>
